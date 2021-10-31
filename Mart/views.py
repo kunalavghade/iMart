@@ -5,16 +5,16 @@ from django.contrib.auth.models import User,auth
 
 # Create your views here.
 def index(request):
-	return HttpResponse("<H1> this is index </H1>")
+	return render(request,"index.html")
 
-def singup(request):
-	pass
+def signup(request):
+	return render(request,"signup.html")
 
-def singin(request):
-	pass
+def signin(request):
+	return render(request,"signin.html")
 
 def logout(request):
-	pass
+	return redirect(request,"index.html")
 
 def login(request):
-	pass
+	return render(request,"login.html")
