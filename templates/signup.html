@@ -9,5 +9,14 @@
 </head>
 <body>
 	<h1>this is test for the best singup</h1>
+	{% block content %}
+	<div class="form-group">
+	<form action="" method="post">
+    	{% csrf_token %}
+    	{{  form.as_p}}
+    <input type="submit" value="Submit">
+    </div>
+{% endblock %}
+</form>
 </body>
 </html>
