@@ -29,12 +29,13 @@ def signup(request):
 	form = Signup()	
 	return render(request,"signup.html",{"form":form})
 
-@login_required(login_url='login')
+@login_required(login_url='./login')
 def main(request):
 	return render(request,"main.html")
 
 def logout(request):
-		return redirect(request,"index.html",{"from":form})
+	auth.logout(request)
+	return redirect("./")
 
 def login(request):
 	if request.method == "POST":
