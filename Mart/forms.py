@@ -8,6 +8,10 @@ class Signup(forms.Form):
 	phone = forms.IntegerField(widget=forms. TextInput(attrs={'class':"form-container","placeholder":"Enter phone"}))
 	password = forms.CharField(max_length = 50,widget=forms.TextInput(attrs={'class':"form-control","placeholder":"Enter Password"}))
 
+class Login(forms.Form):
+	username = forms.CharField(max_length = 100,widget=forms.TextInput(attrs={'class':"form-control","placeholder":"Enter first name"}))
+	password = forms.CharField(max_length = 50,widget=forms.TextInput(attrs={'class':"form-control","placeholder":"Enter Password"}))
+
 # class Signup(forms.ModelForm):
 #     class Meta:
 #         model = UserInfo
