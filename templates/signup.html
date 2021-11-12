@@ -3,20 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet"href="static/form.css">
 	<title>
 		iMart
 	</title>
 </head>
 <body>
-	<h1>this is test for the best singup</h1>
-	{% block content %}
-	<div class="form-group">
-	<form action="" method="post">
-    	{% csrf_token %}
-    	{{  form.as_p}}
-    <input type="submit" value="Submit">
-    </div>
-{% endblock %}
+<h1>Login</h1>
+{% block content %} 
+	<form action="" class="" method="post">
+              {% csrf_token %}
+		    	{{  form.as_p}}
+              <button type="Submit">Login</button>
+        </div>
 </form>
+{% endblock %}
 </body>
 </html>
+
