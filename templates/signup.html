@@ -8,16 +8,21 @@
 		iMart
 	</title>
 </head>
-<body>
-<h1>Login</h1>
-{% block content %} 
+<main>
+	<div class="form-container">
+	<h1>Signup</h1>
+	<hr>
+	{% block content %} 
 	<form action="" class="" method="post">
               {% csrf_token %}
 		    	{{  form.as_p}}
-              <button type="Submit">Login</button>
-        </div>
+              <input type="submit" value="Submit" class="btn1">
+	<a href="login"> 
+		<input type="button" value="Login" class="btn2"></a>
+    
+    	{% endblock %}
+    </div>
 </form>
-{% endblock %}
+    </main>
 </body>
 </html>
-

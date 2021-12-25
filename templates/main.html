@@ -1,14 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>
-		iMart
-	</title>
+  <script src="static/api.js"></script>
+  <script>
+     let a;
+        let date;
+        let time;
+        const options = { weekday: 'long',year: 'numeric',month:'long',day:'numeric'};
+        setInterval(() => {
+        a= new Date();
+        date= a.toLocaleDateString(undefined,options); 
+        time = a.getHours() + ':' + a.getMinutes() + ':' + a.getSeconds();
+        document.getElementById('time').innerHTML= time + "<br>" + date;
+        }, 1000);
+  </script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="static/mainpage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  
+  <title>Main UI</title>
 </head>
+
 <body>
-	<h1>this is test for the  singin</h1>
-	<a href="./logout">logout</a>
+  <div class="container">
+    <div class="Nav" id="myTopnav">
+      <!-- <i><a href="#">iMarts</a></i>
+         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+         <i class="fa fa-bars"></i></a>
+       <a href="#home" class="active">Home</a>
+       <a href="./Login.html">Login</a>
+       <a href="#contact">Contact</a>
+       <a href="#about">About</a> -->
+
+      <!-- <div class="icon">
+        <a href="#" class="icon"><i class="fab fa-instagram fa-3x"></i></a>
+        <a href="#" class="icon"><i class="fab fa-facebook fa-3x"></i></a>
+        <a href="#" class="icon"><i class="fab fa-github fa-3x" height="1" width="1"></i></a>
+        <a href="#" class="icon"><i class="fab fa-twitter fa-3x"></i></a>
+      </div> -->
+      <ul>
+        <li>
+          <a href="#">
+            <div class="icon_1"><i class="fa fa-home"></i><i class="fa fa-home"></i></div>
+            <div class="name"><span data-text="Home">Home</span></div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="icon_1"><i class="fa fa-file"></i><i class="fa fa-file"></i></div>
+            <div class="name"><span data-text="About">About</span></div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="icon_1"><i class="fa fa-envelope"></i><i class="fa fa-envelope"></i></div>
+            <div class="name"><span data-text="contact">contact</span></div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="icon_1"><i class="fa fa-cogs"></i><i class="fa fa-cogs"></i></div>
+            <div class="name"><span data-text="Services">Services</span></div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="icon_1"><i class="fa fa-users"></i><i class="fa fa-users"></i></div>
+            <div class="name"><span data-text="Team">Team</span></div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="user">
+      <div class="greeting">
+        Hello User <br>
+        Good Morning
+      </div>
+
+      <div class="additional">
+        Calender
+        <h1 class="display-4"><span id="time"></span></h1>
+      </div>
+    </div>
+    <div class="calender">
+        <ul>
+          <li>BUY : <progress value="32" max="100"></progress></li>
+          <li>SELL :<progress value="32" max="100"></progress></li>
+          <li>HOLD :<progress value="32" max="100"></progress></li>
+        </ul>
+    </div>
+    <div class="chart">
+      <h3>
+        <center>Perfomance</center>
+      </h3>
+      <input class="btn" type="button" value="SELL">
+      <input class="btn" type="button" value="Buy">
+      <canvas id="myChart"></canvas>
+    </div>
+    <div class="info">
+      <ul>
+        <li>PreviousClose:</li>
+        <li>TodayOpen:</li>
+        <li>TodayClose:</li>
+        <li>Voulme:</li>
+      </ul>
+    </div>
+
+    <div class="company">
+      <ul>
+        <li><a href="#">TATA</a></li>
+        <li><a href="#">TATA</a></li>
+        <li><a href="#">TATA</a></li>
+        <li><a href="#">TATA</a></li>
+        <li><a href="#">TATA</a></li>
+        <li><a href="#">TATA</a></li>
+        <li><a href="#">TATA</a></li>
+        <li><a href="#">TATA</a></li>
+        <li><a href="#">TATA</a></li>
+        <li><a href="#">TATA</a></li>
+      </ul>
+    </div>
+    <!--------------
+    <div class="predication">
+      <ul>
+        <li>BUY :<progress value="32" max="100"></progress></li>
+        <li>SELL :<progress value="32" max="100"></progress></li>
+        <li>HOLD :<progress value="32" max="100"></progress></li>
+      </ul>
+    </div>
+    ---------------->
+    <div class="News">
+      latest news
+     
+    </div>
+  </div>
+  <script src="static/display.js"></script>
+  <script src="static/calender.js"></script>
 </body>
+
 </html>
