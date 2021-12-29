@@ -5,6 +5,10 @@ from django.contrib import messages
 from .forms import Signup,Login
 from django.core.mail import send_mail, BadHeaderError
 from .models import UserInfo
+from django.http import JsonResponse
+import yfinance as yf
+from json import dumps
+
 # Create your views here.
 def index(request):
 	return render(request,"index.html")
@@ -31,7 +35,14 @@ def signup(request):
 
 @login_required(login_url='./login')
 def main(request):
-	return render(request,"main.html")
+	info = yf.Ticker('FB')	
+	his = info.history(period="3mo")
+	time=his.index.format()
+	value=his["Volume"].to_numpy().tolist()
+	maxval = max(value)
+	data = {"time":time,"value":value,"max":maxval}
+	data=dumps(data)
+	return render(request,"main.html",{'data': data})
 
 def logout(request):
 	auth.logout(request)

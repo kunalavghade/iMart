@@ -33,6 +33,7 @@
   } 
 }
  
+
 /*----------------------Navigation Bar-----------------------------------------*/
 /* .Nav { 
   grid-area: Nav; 
@@ -396,4 +397,25 @@ transform: translateY(20px);
   font-size:medium;
   margin-top:7px;
   color:#153467;
+}
+
+.btn1{
+  width: 70px;
+  height: 40px;
+  margin-left: 40%;
+  font-size: 1.1em;
+  cursor: pointer;
+  background:rgb(95, 97, 95);
+  color: white;
+  border: none;
+  transition: all .4s;
+  border-radius: 5px;
+  padding: auto;
+}
+.btn1:hover{
+  border-radius: 5px;
+  transform: translateY(5px);
+  box-shadow: 0 7px 0 -2px rgb(71, 73, 71),
+  0 15px 0 -4px #1c7505,
+  0 16px 10px -3px #1c7505
 }

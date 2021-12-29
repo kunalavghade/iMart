@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-  <script src="static/api.js"></script>
   <script>
-     let a;
-        let date;
-        let time;
-        const options = { weekday: 'long',year: 'numeric',month:'long',day:'numeric'};
-        setInterval(() => {
-        a= new Date();
-        date= a.toLocaleDateString(undefined,options); 
-        time = a.getHours() + ':' + a.getMinutes() + ':' + a.getSeconds();
-        document.getElementById('time').innerHTML= time + "<br>" + date;
-        }, 1000);
+    let a;
+    let date;
+    let time;
+    const options = { weekday: 'long',year: 'numeric',month:'long',day:'numeric'};
+    setInterval(() => {
+    a= new Date();
+    date= a.toLocaleDateString(undefined,options); 
+    time = a.getHours() + ':' + a.getMinutes() + ':' + a.getSeconds();
+    document.getElementById('time').innerHTML= time + "<br>" + date;
+    }, 1000);
+
   </script>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,7 +47,7 @@
       </div> -->
       <ul>
         <li>
-          <a href="#">
+          <a href=".">
             <div class="icon_1"><i class="fa fa-home"></i><i class="fa fa-home"></i></div>
             <div class="name"><span data-text="Home">Home</span></div>
           </a>
@@ -76,6 +76,7 @@
             <div class="name"><span data-text="Team">Team</span></div>
           </a>
         </li>
+        <input class="btn1" type="button" value="sign out">
       </ul>
     </div>
     <div class="user">
@@ -141,8 +142,28 @@
      
     </div>
   </div>
-  <script src="static/display.js"></script>
   <script src="static/calender.js"></script>
+  <script>
+    var data = JSON.parse("{{data|escapejs}}");
+    var myChart=new Chart(document.getElementById("myChart"), {
+      type: "line",
+      data: {
+        labels: data["time"],
+        datasets: [{
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "blue",
+          borderColor: "rgb(23, 226, 33)",
+          data: data["value"]
+        }]
+      },
+      options: {
+        legend: {display: false},
+        scales: {
+          yAxes: [{ticks: {min: 0, max:data["maxval"]}}],
+        }
+      }
+    });
+  </script>
 </body>
-
 </html>
