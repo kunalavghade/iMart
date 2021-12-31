@@ -9,7 +9,18 @@ from django.http import JsonResponse
 import yfinance as yf
 from json import dumps
 
-# Create your views here.
+compony = {
+	"Samsung Electronics":"SMSN.IL",
+	"Wipro":"WTI",
+	"ICIC Bank":"SMSN.IL",
+	"Tata Steel":"TATASTEEL",
+	"Infosys":"INFY",
+	"SBI Electronics":"SBI",
+	"Reliance":"RELI",
+	"Amazon":"AMZN",
+	"Google":"GOOGL",
+}
+
 def index(request):
 	return render(request,"index.html")
 
@@ -33,20 +44,41 @@ def signup(request):
 	form = Signup()	
 	return render(request,"signup.html",{"form":form})
 
-@login_required(login_url='./login')
+@login_required(login_url='/login')
 def main(request):
-	info = yf.Ticker('FB')	
+	if request.method == "POST":
+		comp = request.POST['company']
+		print(comp)
+	else:
+		comp = "Samsung Electronics"
+	info = yf.Ticker(compony[comp])	
 	his = info.history(period="3mo")
 	time=his.index.format()
 	value=his["Volume"].to_numpy().tolist()
 	maxval = max(value)
-	data = {"time":time,"value":value,"max":maxval}
+	last_row=his.iloc[-1]
+	open_val = round(last_row["Open"],4)
+	close_val = round(last_row["Close"],4)
+	volume_val = round(last_row["Volume"],4)
+	last_open = round(his.iloc[-2]["Open"],4)
+	data = {
+		"time":time,
+		"value":value,
+		"max":maxval,
+		"title":comp
+		}
+	stock = {
+		"open":open_val,
+		"close":close_val,
+		"volume":volume_val,
+		"last_open":last_open
+	}
 	data=dumps(data)
-	return render(request,"main.html",{'data': data})
+	return render(request,"main.html",{'data': data,"stock":stock})
 
 def logout(request):
 	auth.logout(request)
-	return redirect("./")
+	return redirect("./login")
 
 def login(request):
 	if request.method == "POST":
