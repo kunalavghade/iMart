@@ -3,7 +3,7 @@
 
 <head>
     <script>
-        let a;
+    let a;
     let date;
     let time;
     const options = { weekday: 'long',year: 'numeric',month:'long',day:'numeric'};
@@ -79,9 +79,9 @@
         </div>
         <div class="calender">
             <ul>
-                <li>BUY : <progress value="32" max="100"></progress></li>
-                <li>SELL :<progress value="32" max="100"></progress></li>
-                <li>HOLD :<progress value="32" max="100"></progress></li>
+                <li>BUY  :<progress id = "buy" value="10" max="100"></progress></li>
+                <li>SELL :<progress id = "sell" value="10" max="100"></progress></li>
+                <li>HOLD :<progress id = "hold" value="10" max="100"></progress></li>
             </ul>
         </div>
         <div class="chart">
@@ -112,7 +112,7 @@
                 <li><a href="main" ><input type="submit" name="company" value="ICIC Bank"/></a></li>
                 <li><a href="main" ><input type="submit" name="company" value="Tata Steel"/></a></li>
                 <li><a href="main" ><input type="submit" name="company" value="Infosys"/></a></li>
-                <li><a href="main" ><input type="submit" name="company" value="SBI Electronics"/></a></li>
+                <li><a href="main" ><input type="submit" name="company" value="SBI"/></a></li>
                 <li><a href="main" ><input type="submit" name="company" value="Reliance"/></a></li>
                 <li><a href="main" ><input type="submit" name="company" value="Amazon"/></a></li>
                 <li><a href="main" ><input type="submit" name="company" value="Google"/></a></li>
@@ -123,7 +123,6 @@
             latest news
         </div>
     </div>
-    <!-- <script src="static/calender.js"></script> -->
     <script>
     var data = JSON.parse("{{data|escapejs}}");
     var myChart = new Chart(document.getElementById("myChart"), {
@@ -139,21 +138,34 @@
             }]
         },
         options: {
-            plugins: {
             title: {
                 display: true,
                 text: data["title"],
                 position:"top",
                 align: "center",
-                }
+                font:{
+                    size:100
+                    // weight:30,
+                },
             },
             legend: { display: false },
             scales: {
-                yAxes: [{ ticks: { min: 0, max: data["maxval"] } }],
+                yAxes: [{ ticks: { min: data["minval"], max: data["maxval"] } }],
             }
         }
     });
+
+    var avg = (data["open"]+data["close"])/2;
+    if (data["open"]>data["close"]) {
+        document.getElementById("sell").value = avg*0.50;
+    }
+    if (data["open"]<data["close"]) {
+        document.getElementById("buy").value = avg*0.40;
+    }
+    if ((data["open"]-data["close"]) < 30 &&  (data["open"]-data["close"]) > 0 ){
+        document.getElementById("hold").value = avg*0.30;
+    }
+
     </script>
 </body>
-
 </html>

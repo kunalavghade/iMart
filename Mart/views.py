@@ -13,16 +13,17 @@ compony = {
 	"Samsung Electronics":"SMSN.IL",
 	"Wipro":"WTI",
 	"ICIC Bank":"SMSN.IL",
-	"Tata Steel":"TATASTEEL",
+	"Tata Steel":"TATASTEEL.NS",
 	"Infosys":"INFY",
-	"SBI Electronics":"SBI",
-	"Reliance":"RELI",
+	"SBI":"SBI",
+	"Reliance":"RELIANCE.NS",
 	"Amazon":"AMZN",
 	"Google":"GOOGL",
-}
+	"IBM":"IBM"
+	}
 
 def index(request):
-	return render(request,"index.html")
+	return render(request,"index.html")	
 
 def signup(request):
 	if request.method == "POST":
@@ -54,8 +55,9 @@ def main(request):
 	info = yf.Ticker(compony[comp])	
 	his = info.history(period="3mo")
 	time=his.index.format()
-	value=his["Volume"].to_numpy().tolist()
+	value=his["High"].to_numpy().tolist()
 	maxval = max(value)
+	minval = min(value)
 	last_row=his.iloc[-1]
 	open_val = round(last_row["Open"],4)
 	close_val = round(last_row["Close"],4)
@@ -65,7 +67,12 @@ def main(request):
 		"time":time,
 		"value":value,
 		"max":maxval,
-		"title":comp
+		"min":minval,
+		"title":comp,
+		"open":open_val,
+		"close":close_val,
+		"volume":volume_val,
+		"last_open":last_open
 		}
 	stock = {
 		"open":open_val,
