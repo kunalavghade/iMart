@@ -175,12 +175,15 @@
 }
 
 .company ul li a {
-    margin-top: 17px;
+    /* margin-top: 17px; */
     color: black;
 }
 
+.company ul{
+    padding-inline-start: 0px;
+}
+
 .company ul li a:hover {
-    border-radius: 9px;
     background-color: #153467;
     border-width: 90px;
 }
@@ -355,4 +358,22 @@ canvas {
     box-shadow: 0 7px 0 -2px rgb(71, 73, 71),
         0 15px 0 -4px #1c7505,
         0 16px 10px -3px #1c7505
+}
+
+.even{
+    width:100%;
+    height:35px;
+    background: #32b768;
+    color: white;
+    border: none;
+    font-weight: bolder;
+}
+
+.odd{
+    width:100%;
+    height:25px;
+    background: white;
+    color: #32b768;
+    border: none;
+    font-weight: bolder;
 }

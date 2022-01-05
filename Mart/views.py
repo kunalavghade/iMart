@@ -2,9 +2,9 @@ from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from .forms import Signup,Login
+from .forms import Signup,Login,ContactUsForm
 from django.core.mail import send_mail, BadHeaderError
-from .models import UserInfo
+from .models import UserInfo,ContactUs
 from django.http import JsonResponse
 import yfinance as yf
 from json import dumps
@@ -103,3 +103,17 @@ def login(request):
 	else:
 		form = Login()
 		return render(request,"login.html",{"form":form})
+
+
+def contactus(request):
+	if request.method == "POST":
+		form = ContactUsForm(request.POST)
+		if form.is_valid():
+			your_name = form.cleaned_data["your_name"]
+			email_address = form.cleaned_data["email_address"]
+			Your_message = form.cleaned_data["Your_message"]
+			ContactUs(Your_message=Your_message,email_address=email_address,your_name=your_name).save()
+			return redirect("/login")
+	else:
+		form = ContactUsForm()
+		return render(request,"contactus.html",{"form":form})

@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="contactus">
                         <div class="icon_1"><i class="fa fa-envelope"></i><i class="fa fa-envelope"></i></div>
                         <div class="name"><span data-text="contact">contact</span></div>
                     </a>
@@ -101,24 +101,26 @@
                 <li>Voulme:{{stock.volume}}</li>
                 {% endblock %}
             </ul>
+
         </div>
+        <form method="POST">
         <div class="company">
             <ul>
-                <form method="POST">
                 {% csrf_token %}
-                <li><a href="main" ><input type="submit" name="company" value="Samsung Electronics"/></a></li>
-                <li><a href="main" ><input type="submit" name="company" value="Wipro"/></a></li>
-                <li><a href="main" ><input type="submit" name="company" value="IBM"/></a></li>
-                <li><a href="main" ><input type="submit" name="company" value="ICIC Bank"/></a></li>
-                <li><a href="main" ><input type="submit" name="company" value="Tata Steel"/></a></li>
-                <li><a href="main" ><input type="submit" name="company" value="Infosys"/></a></li>
-                <li><a href="main" ><input type="submit" name="company" value="SBI"/></a></li>
-                <li><a href="main" ><input type="submit" name="company" value="Reliance"/></a></li>
-                <li><a href="main" ><input type="submit" name="company" value="Amazon"/></a></li>
-                <li><a href="main" ><input type="submit" name="company" value="Google"/></a></li>
-                </form>
+                <li><a href="main" ><input type="submit" class ="even" name="company" value="Samsung Electronics"/></a></li>
+                <li><a href="main" ><input type="submit" class = "odd" name="company" value="Wipro"/></a></li>
+                <li><a href="main" ><input type="submit" class ="even" name="company" value="IBM"/></a></li>
+                <li><a href="main" ><input type="submit" class = "odd" name="company" value="ICIC Bank"/></a></li>
+                <li><a href="main" ><input type="submit" class ="even" name="company" value="Tata Steel"/></a></li>
+                <li><a href="main" ><input type="submit" class = "odd" name="company" value="Infosys"/></a></li>
+                <li><a href="main" ><input type="submit" class ="even" name="company" value="SBI"/></a></li>
+                <li><a href="main" ><input type="submit" class = "odd" name="company" value="Reliance"/></a></li>
+                <li><a href="main" ><input type="submit" class ="even" name="company" value="Amazon"/></a></li>
+                <li><a href="main" ><input type="submit" class = "odd" name="company" value="Google"/></a></li>
             </ul>
-        </div>
+    </div>            
+    </form>
+
         <div class="News">
             latest news
         </div>
