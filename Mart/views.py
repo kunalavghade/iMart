@@ -104,6 +104,8 @@ def login(request):
 		form = Login()
 		return render(request,"login.html",{"form":form})
 
+def about(request):
+	return render(request,"about.html")
 
 def contactus(request):
 	if request.method == "POST":
