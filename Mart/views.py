@@ -8,6 +8,7 @@ from .models import UserInfo,ContactUs
 from django.http import JsonResponse
 import yfinance as yf
 from json import dumps
+import requests
 
 compony = {
 	"Samsung Electronics":"SMSN.IL",
@@ -63,6 +64,13 @@ def main(request):
 	close_val = round(last_row["Close"],4)
 	volume_val = round(last_row["Volume"],4)
 	last_open = round(his.iloc[-2]["Open"],4)
+	response = requests.get('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=f3831cf4b9e34369843e9062f75e80f1')
+	news = response.json()
+	news_title = []
+	news_disc = []
+	for i in range(6):
+		news_title.append(news["articles"][i]["title"])
+
 	data = {
 		"time":time,
 		"value":value,
@@ -72,8 +80,10 @@ def main(request):
 		"open":open_val,
 		"close":close_val,
 		"volume":volume_val,
-		"last_open":last_open
+		"last_open":last_open,
+		"news_title": news_title, 
 		}
+		
 	stock = {
 		"open":open_val,
 		"close":close_val,
