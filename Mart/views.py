@@ -76,7 +76,6 @@ def main(request):
 		"value":value,
 		"max":maxval,
 		"min":minval,
-		"title":comp,
 		"open":open_val,
 		"close":close_val,
 		"volume":volume_val,
@@ -85,6 +84,7 @@ def main(request):
 		}
 		
 	stock = {
+		"title":comp,
 		"open":open_val,
 		"close":close_val,
 		"volume":volume_val,
