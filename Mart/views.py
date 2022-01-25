@@ -6,18 +6,17 @@ from .forms import Signup,Login,ContactUsForm
 from django.core.mail import send_mail, BadHeaderError
 from .models import UserInfo,ContactUs
 from django.http import JsonResponse
-import yfinance as yf
 from json import dumps
 import requests
 
 compony = {
-	"Samsung Electronics":"SMSN.IL",
+	"TCS":"TCS",
 	"Wipro":"WTI",
-	"ICIC Bank":"SMSN.IL",
-	"Tata Steel":"TATASTEEL.NS",
+	"ICIC Bank":"IBN",
+	"Tata Motors":"TTM",
 	"Infosys":"INFY",
 	"SBI":"SBI",
-	"Reliance":"RELIANCE.NS",
+	"Tesla":"TSLA",
 	"Amazon":"AMZN",
 	"Google":"GOOGL",
 	"IBM":"IBM"
@@ -52,18 +51,25 @@ def main(request):
 		comp = request.POST['company']
 		print(comp)
 	else:
-		comp = "Samsung Electronics"
-	info = yf.Ticker(compony[comp])	
-	his = info.history(period="3mo")
-	time=his.index.format()
-	value=his["High"].to_numpy().tolist()
+		comp = "Google"
+	time = []
+	value = []
+	url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={compony[comp]}&apikey=9GI559N6X7ZBUR94'
+	r = requests.get(url)
+	data = r.json()
+	count = 0
+	for i in data["Time Series (Daily)"]:
+		time.append(i)
+		value.append(float(data["Time Series (Daily)"][i]["2. high"]))
+		count+=1
+		if(count == 30):
+			break
 	maxval = max(value)
 	minval = min(value)
-	last_row=his.iloc[-1]
-	open_val = round(last_row["Open"],4)
-	close_val = round(last_row["Close"],4)
-	volume_val = round(last_row["Volume"],4)
-	last_open = round(his.iloc[-2]["Open"],4)
+	open_val = round(float(data["Time Series (Daily)"][time[0]][ "1. open"]),2)
+	close_val = round(float(data["Time Series (Daily)"][time[0]]["4. close"]),2)
+	volume_val = round(float(data["Time Series (Daily)"][time[0]]["5. volume"]),2)
+	last_open = round(float(data["Time Series (Daily)"][time[1]][ "1. open"]),2)
 	response = requests.get('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=f3831cf4b9e34369843e9062f75e80f1')
 	news = response.json()
 	news_title = []
@@ -72,8 +78,8 @@ def main(request):
 		news_title.append(news["articles"][i]["title"])
 
 	data = {
-		"time":time,
-		"value":value,
+		"time":time[:-1],
+		"value":value[:-1],
 		"max":maxval,
 		"min":minval,
 		"open":open_val,
