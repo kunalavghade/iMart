@@ -34,13 +34,7 @@ body {
 }
 
 /*----------------------Text index-----------------------*/
-.greeting {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
-.greeting h2 {
-    color: rgba(194, 189, 189, 0.973);
-}
 
 .btn {
     background-color: #32b768;
@@ -62,30 +56,58 @@ body {
     border-style: none;
 }
 
-/*----------------------------------BOXES----------------------------------*/
+.container{
+    height: 275px;
+    width: 100%;
+}
+
+.greeting-text h2 ,h1{
+    padding-left: 5%;
+}
+
+.greeting-text{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    float: left;
+    width: 40%;
+    height: 275px;
+    align-content: center;
+}
+
+.greeting-image{
+    float: right;
+    width: 60%;
+    height: 275px;
+    align-content: center;
+}
+
+.img-greet{
+    height: 270px;
+    width: 80%;
+    padding-left: 10%;
+}
+
 .boxes {
-    display: flex;
+    margin-top: 40px;
+    width: 90%;
+    margin-left: 5%;
     text-align: center;
-    justify-content: space-between;
     justify-content: center;
-    margin-right: 65px;
-    margin-top: 13%;
-    padding: 12px;
+
+}
+.box{
+    border-radius: 0px;
+    border-style: outset;
+    box-shadow: 0px 10px 50px rgba(239, 239, 241, 0);
 }
 
 .box1,
 .box2,
 .box3 {
-    width: 350px;
-    border-radius: 5px;
-    margin-left: 54px;
-    min-height: 290px;
-    border-style: outset;
-    box-shadow: 0px 10px 50px rgba(239, 239, 241, 0)
+    border: black;
+    align-content: center;
+    float: left;
+    width: 33.3%;
 }
-
-
-
 /*----------------------------------------------------------------------------------------------------*/
 /*.topnav a.active {
   background-color: rgb(1, 134, 19);
@@ -96,6 +118,23 @@ body {
   display: none;
 }*/
 /*---------------------------For the responsive page --------------------------*/
+@media screen and (max-width: 800px) {
+    .greeting-txt,.greeting-image{
+        width: 100%;
+    }
+    .box1,.box2,.box3{
+        width: 100%;
+        margin-top: 20px;
+    }
+    .box{
+        width: 80%;
+        margin-left: 10%;
+        border-radius: 15px;
+        border-style: outset;
+        box-shadow: 0px 10px 50px rgba(239, 239, 241, 0);
+    }
+}
+
 @media screen and (max-width: 600px) {
     .topnav a:not(:first-child) {
         display: none;
@@ -106,7 +145,6 @@ body {
         display: block;
     }
 }
-
 @media screen and (max-width: 600px) {
     .topnav.responsive {
         position: relative;

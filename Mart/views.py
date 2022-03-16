@@ -78,8 +78,8 @@ def main(request):
 		news_title.append(news["articles"][i]["title"])
 
 	data = {
-		"time":time[:-1],
-		"value":value[:-1],
+		"time":time[::-1],
+		"value":value[::-1],
 		"max":maxval,
 		"min":minval,
 		"open":open_val,
